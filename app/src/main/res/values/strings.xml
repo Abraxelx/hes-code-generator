@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">HES KODU</string>
+    <string name="lessNumber">TC veya SERİ NUMARASINI EKSİK GİRDİNİZ</string>
+    <string name="checkMessageBox">MESAJ GELEN KUTUNUZU KONTROL EDİNİZ</string>
+    <string name="permissionInvalid">UYGULAMA İZİNLERİNİ KONTROL EDİNİZ</string>
+    <string name="getHesCode">HES KODU AL</string>
+    <string name="tcNo">TC KİMLİK NO</string>
+    <string name="lastLettersOfIdNo">KİMLİK SERİ NO SON 4 HANESİ</string>
+    <string name="hes_kodu_al">HES KODU AL</string>
+    <string name="aboutApp">Hakkında</string>
+    <string name="getHesBtn">HES KODUNU AL</string>
+    <string name="saveHES">HES KODUNU SAKLA</string>
+</resources>
