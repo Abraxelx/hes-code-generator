@@ -4,18 +4,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
-import androidx.core.content.res.ResourcesCompat;
-
 import android.Manifest;
 import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
-import android.database.Cursor;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.telephony.SmsManager;
-import android.text.InputType;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -28,11 +24,11 @@ public class MainActivity extends AppCompatActivity {
 
     final int SEND_SMS_PERMISSION_REQUEST_CODE = 1;
     final String PHONE_NUMBER = "2023";
+
     EditText tcKimlikNo, serialNo;
     Button senderButton, saveButton;
     String smsMessage;
     ConstraintLayout myLayout;
-    DatabaseHelper mDatabaseHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         senderButton = findViewById(R.id.btnSender);
         myLayout = findViewById(R.id.myLayout);
         saveButton = findViewById(R.id.btnSaveHES);
+        saveButton.setVisibility(View.GONE);
 
 
 
@@ -51,9 +48,9 @@ public class MainActivity extends AppCompatActivity {
         if(!checkPermisson(Manifest.permission.SEND_SMS)){
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, SEND_SMS_PERMISSION_REQUEST_CODE);
         }
-        if(!checkPermisson(Manifest.permission.READ_SMS)){
-            ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_SMS},SEND_SMS_PERMISSION_REQUEST_CODE);
-        }
+        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.READ_SMS},PackageManager.PERMISSION_GRANTED);
+        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.RECEIVE_SMS},PackageManager.PERMISSION_GRANTED);
+
 
 
         senderButton.setOnClickListener(new View.OnClickListener() {
@@ -61,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 smsMessage ="HES".concat(" ").concat(tcKimlikNo.getText().toString()).concat(" ").concat(serialNo.getText().toString())
                         .concat(" ").concat("540");
-                if(checkPermisson(Manifest.permission.SEND_SMS) && checkPermisson(Manifest.permission.READ_SMS)){
+                if(checkPermisson(Manifest.permission.SEND_SMS) && checkPermisson(Manifest.permission.READ_SMS)&& checkPermisson(Manifest.permission.RECEIVE_SMS)){
                     if(tcKimlikNo.getText().length()< 11 || serialNo.getText().length() < 4){
                         Toast.makeText(getApplicationContext(), R.string.lessNumber, Toast.LENGTH_LONG).show();
                     }else{
@@ -74,11 +71,36 @@ public class MainActivity extends AppCompatActivity {
                         tcKimlikNo.setText("");
                         serialNo.setText("");
                         closeKeyboard();
+
+
+
+                        new CountDownTimer(10000, 1000){
+
+                            @Override
+                            public void onTick(long millisUntilFinished) {
+                            }
+
+                            @Override
+                            public void onFinish() {
+                                saveButton.setVisibility(View.VISIBLE);
+
+                            }
+                        }.start();
                     }
                 }else{
+                    if(!checkPermisson(Manifest.permission.RECEIVE_SMS)){
+                        ActivityCompat.requestPermissions(MainActivity.this,new String[]{Manifest.permission.RECEIVE_SMS}, SEND_SMS_PERMISSION_REQUEST_CODE);
+                    }
                     Toast.makeText(getApplicationContext(), R.string.permissionInvalid, Toast.LENGTH_LONG).show();
 
                 }
+            }
+        });
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SaveHesCodes.class);
+                startActivity(intent);
             }
         });
     }
@@ -96,10 +118,5 @@ public class MainActivity extends AppCompatActivity {
         return (check == PackageManager.PERMISSION_GRANTED);
     }
 
-    private String smsReader(){
-        Cursor cursor = getContentResolver().query(Uri.parse("content://sms"),null, null, null,null);
-        cursor.moveToFirst();
-        return cursor.getString(12);
-    }
 
 }

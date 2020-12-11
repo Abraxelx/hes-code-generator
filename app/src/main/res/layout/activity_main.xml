@@ -9,30 +9,31 @@
 
     <TextView
         android:id="@+id/nameHES"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:gravity="center_horizontal"
         android:text="@string/hes_kodu_al"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias=".10"
         tools:text="@string/getHesCode" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/tcLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="25dp"
         app:counterEnabled="true"
         app:counterMaxLength="11"
-        app:layout_constraintBottom_toTopOf="@+id/serialNoLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nameHES">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias=".30">
 
         <EditText
             android:id="@+id/txtTcNo"
@@ -50,21 +51,20 @@
         android:id="@+id/serialNoLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="168dp"
         app:counterEnabled="true"
         app:counterMaxLength="4"
-        app:layout_constraintBottom_toTopOf="@+id/btnSender"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tcLayout">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias=".45">
 
 
         <EditText
             android:id="@+id/txtSerialNo"
             style="@android:style/Widget.Holo.Light.EditText"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:hint="@string/lastLettersOfIdNo"
             android:importantForAutofill="no"
             android:inputType="numberDecimal"
@@ -77,36 +77,35 @@
         android:layout_height="wrap_content"
         android:backgroundTint="@color/green_600"
         android:text="@string/getHesBtn"
-        app:layout_constraintBottom_toTopOf="@+id/btnSaveHES"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias=".58" />
 
     <Button
         android:id="@+id/btnSaveHES"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="200dp"
-        android:text="@string/saveHES"
-        app:layout_constraintBottom_toTopOf="@+id/about"
-        app:layout_constraintEnd_toEndOf="parent"
         android:backgroundTint="@color/green_600"
-        android:visibility="invisible"
-        app:layout_constraintStart_toStartOf="parent" />
+        android:text="@string/saveHES"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias=".70"/>
 
     <TextView
         android:id="@+id/about"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginLeft="176dp"
-        android:layout_marginEnd="176dp"
-        android:layout_marginRight="176dp"
-        android:layout_marginBottom="30dp"
         android:gravity="center_horizontal"
         android:text="@string/aboutApp"
         android:textAlignment="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintVertical_bias=".90"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
