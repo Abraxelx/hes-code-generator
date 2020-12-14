@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/saveLayout"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
 
@@ -19,7 +20,7 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintVertical_bias=".10"/>
+        app:layout_constraintVertical_bias=".05"/>
 
 
     <com.google.android.material.textfield.TextInputLayout
@@ -30,7 +31,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".40">
+        app:layout_constraintVertical_bias=".20">
 
 
         <EditText
@@ -41,15 +42,16 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:id="@+id/btnSaveDB"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btnSaveDB"
-        android:text="    HES KODU KAYDET    "
+        android:text="@string/hesCodeSaveDesc"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias=".53"/>
+        app:layout_constraintVertical_bias=".50" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

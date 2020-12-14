@@ -1,6 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="app_name">HES KODU</string>
+    <string name="lessNumber">TC veya SERİ NUMARASINI EKSİK GİRDİNİZ</string>
+    <string name="checkMessageBox">MESAJ GELEN KUTUNUZU KONTROL EDİNİZ</string>
+    <string name="permissionInvalid">UYGULAMA İZİNLERİNİ KONTROL EDİNİZ</string>
+    <string name="getHesCode">HES KODU AL</string>
+    <string name="tcNo">TC KİMLİK NO</string>
+    <string name="lastLettersOfIdNo">KİMLİK SERİ NO SON 4 HANESİ</string>
     <string name="hes_kodu_al">HES KODU AL</string>
-    <string name="aboutApp">Hakkında</string>
+    <string name="aboutApp">Uygulama Hakkında</string>
     <string name="getHesBtn">HES KODUNU AL</string>
+    <string name="saveHES">KAYDET</string>
+    <string name="title_activity_save_hes_codes">SaveHesCodes</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="hesCodeReminder">Hes Kodunu Hatırlamak İçin Bir İsim Yazınız</string>
+    <string name="hesCodeSaveDesc">HES KODUNU KAYDET</string>
 </resources>
