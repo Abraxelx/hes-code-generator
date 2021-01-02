@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.abraxel.hes_kodu.about.AboutPageActivity;
 import com.abraxel.hes_kodu.entity.HesModel;
+import com.abraxel.hes_kodu.loading.LoadingDialog;
 import com.abraxel.hes_kodu.recyclerview.RecyclerCardActivity;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -61,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         smsCounter.setCounter(0);
+
+        LoadingDialog loadingDialog = new LoadingDialog(MainActivity.this);
 
         MobileAds.initialize(this, new OnInitializationCompleteListener() {
             @Override
@@ -147,6 +150,7 @@ public class MainActivity extends AppCompatActivity {
                         serialNo.setText("");
                         smsWarner.setVisibility(View.VISIBLE);
                         closeKeyboard();
+                        loadingDialog.startLoadingDialog();
 
 
 
@@ -155,6 +159,7 @@ public class MainActivity extends AppCompatActivity {
                             @Override
                             public void onTick(long millisUntilFinished) {
                                 if(smsCounter.getCounter() > 1){
+                                    loadingDialog.dismissDialog();
                                     saveButton.setVisibility(View.VISIBLE);
                                     smsWarner.setText("HES KODU BAŞARIYLA ALINDI");
                                     labelCopy.setVisibility(View.VISIBLE);
