@@ -19,6 +19,7 @@ import android.os.CountDownTimer;
 import android.telephony.SmsManager;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -28,8 +29,10 @@ import com.abraxel.hes_kodu.about.AboutPageActivity;
 import com.abraxel.hes_kodu.entity.HesModel;
 import com.abraxel.hes_kodu.loading.LoadingDialog;
 import com.abraxel.hes_kodu.recyclerview.RecyclerCardActivity;
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.google.android.gms.ads.MobileAds;
 import com.google.android.gms.ads.initialization.InitializationStatus;
 import com.google.android.gms.ads.initialization.OnInitializationCompleteListener;
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     final int SEND_SMS_PERMISSION_REQUEST_CODE = 1;
     final int REQUEST_CODE = 123;
     final String PHONE_NUMBER = "2023";
+    private InterstitialAd interstitialAd;
 
     EditText tcKimlikNo, serialNo;
     Button senderButton, saveButton, copyButton, showEntries, goQR;
@@ -60,6 +64,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN );
         setContentView(R.layout.activity_main);
         smsCounter.setCounter(0);
 
@@ -74,6 +80,18 @@ public class MainActivity extends AppCompatActivity {
         mAdView = findViewById(R.id.myAd);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
+
+
+        interstitialAd = new InterstitialAd(this);
+        interstitialAd.setAdUnitId(getString(R.string.admob_insterstitial_ad));
+        interstitialAd.loadAd(new AdRequest.Builder().build());
+        interstitialAd.setAdListener(new AdListener(){
+            @Override
+            public void onAdClosed(){
+                super.onAdClosed();
+            }
+        });
+
 
 
 
@@ -190,8 +208,9 @@ public class MainActivity extends AppCompatActivity {
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // Intent intent = new Intent(MainActivity.this, SaveHesCodes.class);
-                // startActivity(intent);
+                if(interstitialAd.isLoaded()){
+                    interstitialAd.show();
+                }
                 createSaveDialog();
                 saveButton.setEnabled(false);
             }
@@ -209,6 +228,9 @@ public class MainActivity extends AppCompatActivity {
         labelAbout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(interstitialAd.isLoaded()){
+                    interstitialAd.show();
+                }
                 Intent intent = new Intent(MainActivity.this, AboutPageActivity.class);
                 startActivity(intent);
 

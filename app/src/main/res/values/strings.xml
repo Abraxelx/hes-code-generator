@@ -11,9 +11,6 @@
     <string name="getHesBtn">HES KODUNU AL</string>
     <string name="saveHES">KAYDET</string>
     <string name="title_activity_save_hes_codes">SaveHesCodes</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
@@ -21,4 +18,6 @@
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="hesCodeReminder">Hes Kodunu Hatırlamak İçin Bir İsim Yazınız</string>
     <string name="hesCodeSaveDesc">HES KODUNU KAYDET</string>
+    <string name="admob_insterstitial_ad" translatable="false">ca-app-pub-2313560120112536/9066813954</string>
+    <string name="admob_app_id" translatable="false">ca-app-pub-2313560120112536~6550278511</string>
 </resources>
